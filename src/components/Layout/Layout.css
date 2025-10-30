@@ -1,0 +1,27 @@
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  background: hsl(var(--background));
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 200px;
+  margin-right: 320px;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 1400px) {
+  .main-content {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 80px;
+    padding: 1rem;
+  }
+}
