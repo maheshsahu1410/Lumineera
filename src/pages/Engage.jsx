@@ -1,137 +1,147 @@
 import Layout from '../components/Layout/Layout';
-import MetricCard from '../components/Dashboard/MetricCard';
-import { Users, DollarSign, Eye, TrendingUp, MousePointer } from 'lucide-react';
-import './Dashboard.css';
+import StreamWorkspace from '../components/Stream/StreamWorkspace';
+
+const signals = [
+  { time: '2m ago', type: 'increase', text: 'ROAS ↑ 4%' },
+  { time: '5m ago', type: 'decrease', text: 'CTR ↓ 2%' },
+  { time: '12m ago', type: 'increase', text: 'Campaign X engagement +15%' },
+  { time: '18m ago', type: 'neutral', text: 'New audience segment identified' },
+  { time: '25m ago', type: 'increase', text: 'Email open rate ↑ 8%' },
+];
+
+const proposals = [
+  {
+    title: 'Increase Campaign X Budget by 10%',
+    description: 'Strong performance indicators suggest scaling opportunity',
+    confidence: 87,
+    tags: ['Brand Guideline', 'Budget Cap', 'Risk: Low'],
+    simulation: {
+      'Budget': '+$250/week',
+      'CTR': '2.8% → 2.88%',
+      'CAC': '$45 → $44.55',
+      'New customers': '+150/week',
+      'Revenue increase': '$12K/week',
+      'ROI': '4,700%',
+      'Engagement': '+12%',
+      'Confidence': '88%'
+    },
+    execution: {
+      'Campaign ID': 'CPG-IG-0509',
+      'Started': 'May 9, 6:00 PM',
+      'Status': '5 Reels created & posted',
+      'Budget activated': '$5,250',
+      'Impressions (1hr)': '2,450',
+      'CTR (1hr)': '3.5%',
+      'Conversions': '3',
+      'Real-time tracking': 'Active',
+      'Team notified': '4 departments'
+    },
+    feedback: [
+      { stream: 'Orchestrate', text: 'Inventory levels confirmed sufficient' },
+      { stream: 'Insight', text: 'ROI projection validated' }
+    ]
+  },
+  {
+    title: 'Adjust AdX Bidding Strategy',
+    description: 'Optimize for conversion instead of clicks based on recent data',
+    confidence: 72,
+    tags: ['Performance', 'Risk: Medium'],
+    simulation: {
+      'Target': '3,500 inactive users',
+      'Segments': '3 (VIP/Regular/Casual)',
+      'Predicted open': '22% (770)',
+      'Expected conversions': '53',
+      'Revenue forecast': '$42K',
+      'Cost': '$850',
+      'ROI': '4,841%',
+      'Re-engagement': '525 (15%)',
+      'Confidence': '82%'
+    },
+    execution: {
+      'Launched': 'May 9, 10:00 AM',
+      'Campaign ID': 'EML-REACT-0509',
+      'Sent': '3,500 emails',
+      'Delivered': '3,430',
+      'Opened (2hrs)': '187 (5.4%)',
+      'Conversions': '2 ($170)',
+      'A/B testing': 'Active',
+      'Follow-ups': 'Scheduled',
+      'Status': 'ACTIVE'
+    },
+    feedback: [
+      { stream: 'Insight', text: 'CLV projection: +22%' }
+    ]
+  },
+  {
+    title: 'Launch Retargeting Campaign',
+    description: 'High-value cart abandoners showing strong intent signals',
+    confidence: 91,
+    tags: ['Brand Guideline', 'Risk: Low'],
+    simulation: {
+      'Targeted users': '1,250',
+      'Expected CTR': '4.2%',
+      'Conversion rate': '12%',
+      'Revenue projection': '$18K',
+      'Cost': '$450',
+      'ROI': '3,900%',
+      'Confidence': '91%'
+    },
+    execution: {
+      'Campaign launched': 'Active',
+      'Users targeted': '1,250',
+      'Actual CTR': '4.5%',
+      'Conversions': '8',
+      'Revenue': '$2,100',
+      'Status': 'Running'
+    }
+  }
+];
+
+const actions = [
+  {
+    title: 'Campaign Budget Adjustment',
+    description: 'Increased AdX budget by +10%',
+    time: '1h ago',
+    status: 'completed',
+    result: 'ROAS improved by 7.4%',
+    feedback: [
+      { stream: 'Orchestrate', text: 'Inventory levels confirmed sufficient' },
+      { stream: 'Insight', text: 'ROI projection validated' }
+    ]
+  },
+  {
+    title: 'Email Sequence Optimization',
+    description: 'A/B test new subject lines',
+    time: '3h ago',
+    status: 'pending'
+  },
+  {
+    title: 'Audience Segmentation',
+    description: 'Created new high-value segment',
+    time: '5h ago',
+    status: 'completed',
+    result: 'Segment size: 12.5K users',
+    feedback: [
+      { stream: 'Insight', text: 'CLV projection: +22%' }
+    ]
+  }
+];
 
 const Engage = () => {
   return (
     <Layout currentModule="engage">
-      <div className="dashboard-page">
+      <div className="page-container">
         <header className="page-header">
           <h1>Lumi-Engage</h1>
-          <p className="page-subtitle">Customer experience, support & marketing</p>
+          <p className="page-subtitle">Marketing and customer engagement intelligence stream</p>
         </header>
-
-        <section className="dashboard-section">
-          <h2>Current Metrics</h2>
-          <div className="metrics-grid">
-            <MetricCard
-              label="CLV"
-              value="₹12,500"
-              tooltip="Customer Lifetime Value for top 20% customers"
-              trend={8}
-              icon={DollarSign}
-            />
-            <MetricCard
-              label="CAC"
-              value="₹1,200"
-              tooltip="Acquisition cost per new customer last 30 days"
-              trend={-3}
-              icon={Users}
-            />
-            <MetricCard
-              label="Impressions"
-              value="450,000"
-              tooltip="Total ad impressions across all campaigns"
-              trend={12}
-              icon={Eye}
-            />
-            <MetricCard
-              label="Conversion Rate"
-              value="2.8%"
-              tooltip="Percentage of visitors → customers"
-              trend={5}
-              icon={TrendingUp}
-            />
-            <MetricCard
-              label="CTR"
-              value="1.9%"
-              tooltip="Click-through rate of campaigns"
-              trend={-2}
-              icon={MousePointer}
-            />
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Trends & Signals</h2>
-          <div className="trends-container">
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge">Social Media</span>
-                <span className="trend-impact">+3% CTR</span>
-              </div>
-              <h3>Instagram trending topic X</h3>
-              <p className="trend-description">Highlights node on ripple map. Simulate campaign impact → CTR ↑ 3%</p>
-              <button className="trend-action">Simulate Impact</button>
-            </div>
-
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge warning">Competitor</span>
-                <span className="trend-impact negative">-1% Share</span>
-              </div>
-              <h3>Competitor Y launched promo</h3>
-              <p className="trend-description">Node highlight. Simulate effect → market share ↓ 1%</p>
-              <button className="trend-action">Simulate Impact</button>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Actions & Recommendations</h2>
-          <div className="actions-list">
-            <div className="action-item severity-success">
-              <div className="action-content">
-                <h3>Increase Instagram ad spend by 5%</h3>
-                <p>Predicted CTR ↑ 3%, CAC ↓ 1%</p>
-                <div className="action-simulation">
-                  <strong>Simulation:</strong> Pulse ↑ 2%, Ripple: Engaged Customers ↑ 5%
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-
-            <div className="action-item severity-warning">
-              <div className="action-content">
-                <h3>Reactivate email campaign</h3>
-                <p>Expected conversion increase 1.5%</p>
-                <div className="action-simulation">
-                  <strong>Simulation:</strong> Ripple map: Conversion node ↑ 1.5%
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>History & Logs</h2>
-          <div className="history-timeline">
-            <div className="timeline-item">
-              <div className="timeline-date">5 May 2025</div>
-              <div className="timeline-content">
-                <h4>Increased Instagram spend</h4>
-                <p>CTR ↑ 3% (Predicted 2.8%)</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-date">2 May 2025</div>
-              <div className="timeline-content">
-                <h4>Lessons learned</h4>
-                <p>Top performing campaigns: short reels &lt;15s</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
+        <StreamWorkspace 
+          streamName="Engage"
+          signals={signals}
+          proposals={proposals}
+          actions={actions}
+        />
       </div>
     </Layout>
   );

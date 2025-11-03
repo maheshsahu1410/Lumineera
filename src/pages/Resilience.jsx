@@ -1,125 +1,122 @@
 import Layout from '../components/Layout/Layout';
-import MetricCard from '../components/Dashboard/MetricCard';
-import { Activity, Server, HardDrive, Zap } from 'lucide-react';
-import './Dashboard.css';
+import StreamWorkspace from '../components/Stream/StreamWorkspace';
 
-const Resilience = () => {
+const signals = [
+  { time: '1m ago', type: 'increase', text: 'Uptime ↑ 99.7%' },
+  { time: '10m ago', type: 'decrease', text: 'Error rate ↓ 0.5%' },
+  { time: '15m ago', type: 'neutral', text: 'Backup completed: 100%' },
+  { time: '25m ago', type: 'neutral', text: 'CPU load: 70%' },
+  { time: '35m ago', type: 'neutral', text: 'Scheduled maintenance: 2hrs' },
+];
+
+const proposals = [
+  {
+    title: 'Scale Backup Server',
+    description: 'Reduces potential downtime from 2hrs → 0.3hrs',
+    confidence: 88,
+    tags: ['Infrastructure', 'Uptime', 'Risk: Low'],
+    simulation: {
+      'Downtime reduction': '2hrs → 0.3hrs',
+      'System resilience': '↑ 15%',
+      'Cost': '$450/month',
+      'Recovery time': '-85%',
+      'Confidence': '88%'
+    },
+    execution: {
+      'Server scaled': 'Yes',
+      'Capacity': '+50%',
+      'Downtime achieved': '0.3hrs',
+      'Cost': '$450/month',
+      'Status': 'Active'
+    },
+    feedback: [
+      { stream: 'Insight', text: 'Cost-benefit ratio validated' },
+      { stream: 'Orchestrate', text: 'System capacity confirmed' }
+    ]
+  },
+  {
+    title: 'Test Server Overload Scenario',
+    description: 'Simulate high-traffic conditions',
+    confidence: 75,
+    tags: ['Testing', 'Performance', 'Risk: Low'],
+    simulation: {
+      'Test duration': '2 hours',
+      'Traffic simulation': '10x normal',
+      'Expected bottlenecks': '2 areas',
+      'Confidence': '75%'
+    },
+    execution: {
+      'Test completed': 'Yes',
+      'Bottlenecks found': '2',
+      'Performance': 'Within limits',
+      'Status': 'Passed'
+    }
+  },
+  {
+    title: 'Optimize Database Queries',
+    description: 'Reduce database load by 20%',
+    confidence: 82,
+    tags: ['Performance', 'Database', 'Risk: Low'],
+    simulation: {
+      'Load reduction': '↓ 20%',
+      'Query speed': '↑ 35%',
+      'Affected queries': '15',
+      'Confidence': '82%'
+    },
+    execution: {
+      'Queries optimized': '15',
+      'Load reduced': '↓ 20%',
+      'Speed improved': '↑ 35%',
+      'Status': 'Deployed'
+    }
+  }
+];
+
+const actions = [
+  {
+    title: 'Backup Server Scaled',
+    description: 'Increased backup server capacity by 50%',
+    time: '30m ago',
+    status: 'completed',
+    result: 'Downtime reduced from 2hrs to 0.3hrs',
+    feedback: [
+      { stream: 'Insight', text: 'Cost justified by downtime savings' }
+    ]
+  },
+  {
+    title: 'System Overload Test',
+    description: 'Tested 10x normal traffic load',
+    time: '2h ago',
+    status: 'completed',
+    result: 'Performance within acceptable limits, 2 bottlenecks identified'
+  },
+  {
+    title: 'Database Optimization',
+    description: 'Optimized 15 database queries',
+    time: '1d ago',
+    status: 'completed',
+    result: 'Load ↓ 20%, Speed ↑ 35%'
+  }
+];
+
+const ResiliencePage = () => {
   return (
     <Layout currentModule="resilience">
-      <div className="dashboard-page">
+      <div className="page-container">
         <header className="page-header">
           <h1>Lumi-Resilience</h1>
-          <p className="page-subtitle">System resilience & business continuity</p>
+          <p className="page-subtitle">System resilience & business continuity intelligence stream</p>
         </header>
-
-        <section className="dashboard-section">
-          <h2>Current Metrics</h2>
-          <div className="metrics-grid">
-            <MetricCard
-              label="System Uptime"
-              value="99.7%"
-              tooltip="Past 24 hours"
-              trend={0.2}
-              icon={Server}
-            />
-            <MetricCard
-              label="Error Rates"
-              value="0.5%"
-              tooltip="Failed transactions or system errors"
-              trend={-10}
-              icon={Activity}
-            />
-            <MetricCard
-              label="Backup Health"
-              value="100%"
-              tooltip="Last backup successful"
-              trend={0}
-              icon={HardDrive}
-            />
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Trends & Alerts</h2>
-          <div className="trends-container">
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge warning">Maintenance</span>
-                <span className="trend-impact">2hrs Downtime</span>
-              </div>
-              <h3>Scheduled maintenance</h3>
-              <p className="trend-description">Potential downtime 2hrs</p>
-              <button className="trend-action">View Schedule</button>
-            </div>
-
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge">Performance</span>
-                <span className="trend-impact">CPU Load 70%</span>
-              </div>
-              <h3>Backend Server 1</h3>
-              <p className="trend-description">CPU load ↑ 70%, Backup ok</p>
-              <button className="trend-action">Monitor</button>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Simulation & Testing</h2>
-          <div className="actions-list">
-            <div className="action-item severity-warning">
-              <div className="action-content">
-                <h3>Test server overload scenario</h3>
-                <p>Simulate high-traffic conditions</p>
-                <div className="action-simulation">
-                  <strong>Test:</strong> Multi-stream effect on system performance
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Run Test</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-
-            <div className="action-item severity-success">
-              <div className="action-content">
-                <h3>Scale backup server</h3>
-                <p>Reduces potential downtime from 2hrs → 0.3hrs</p>
-                <div className="action-simulation">
-                  <strong>Impact:</strong> System resilience ↑ 15%
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Actions & Review</h2>
-          <div className="history-timeline">
-            <div className="timeline-item">
-              <div className="timeline-date">9 May 2025</div>
-              <div className="timeline-content">
-                <h4>Backup server scaled</h4>
-                <p>Downtime reduced from 2hrs to 0.3hrs</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-date">6 May 2025</div>
-              <div className="timeline-content">
-                <h4>System overload test</h4>
-                <p>Performance within acceptable limits</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
+        <StreamWorkspace 
+          streamName="Resilience"
+          signals={signals}
+          proposals={proposals}
+          actions={actions}
+        />
       </div>
     </Layout>
   );
 };
 
-export default Resilience;
+export default ResiliencePage;

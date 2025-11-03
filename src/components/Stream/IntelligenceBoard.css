@@ -1,0 +1,197 @@
+.intelligence-board {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.board-header h3 {
+  color: hsl(var(--foreground));
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.proposal-count {
+  padding: 0.25rem 0.75rem;
+  background: hsl(var(--secondary));
+  color: hsl(var(--muted-foreground));
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.proposals-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.intelligence-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+.intelligence-card:hover {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 4px 12px hsl(var(--primary) / 0.1);
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: hsl(var(--primary) / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--primary));
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-title {
+  color: hsl(var(--foreground));
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-description {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.confidence-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.confidence-high {
+  background: hsl(var(--glow-success) / 0.1);
+  color: hsl(var(--glow-success));
+}
+
+.confidence-medium {
+  background: hsl(var(--glow-cyan) / 0.1);
+  color: hsl(var(--glow-cyan));
+}
+
+.confidence-low {
+  background: hsl(var(--glow-warning) / 0.1);
+  color: hsl(var(--glow-warning));
+}
+
+.confidence-label {
+  font-weight: 500;
+}
+
+.confidence-value {
+  font-weight: 700;
+}
+
+.proposal-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.proposal-tag {
+  padding: 0.25rem 0.5rem;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+  border-radius: 4px;
+  font-size: 0.625rem;
+  font-weight: 500;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.card-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: 1px solid;
+}
+
+.btn-simulate {
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+.btn-simulate:hover {
+  background: hsl(var(--accent) / 0.1);
+  border-color: hsl(var(--accent));
+}
+
+.btn-approve {
+  background: hsl(var(--glow-success) / 0.1);
+  color: hsl(var(--glow-success));
+  border-color: hsl(var(--glow-success) / 0.3);
+}
+
+.btn-approve:hover {
+  background: hsl(var(--glow-success) / 0.2);
+  border-color: hsl(var(--glow-success));
+}
+
+.btn-details {
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary) / 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.btn-details:hover {
+  background: hsl(var(--primary) / 0.2);
+  border-color: hsl(var(--primary));
+}

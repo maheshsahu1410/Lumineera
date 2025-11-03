@@ -1,0 +1,227 @@
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.governance-drawer {
+  position: fixed;
+  top: 0;
+  right: -600px;
+  width: 600px;
+  max-width: 90vw;
+  height: 100vh;
+  background: hsl(var(--card));
+  border-left: 1px solid hsl(var(--border));
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 24px hsl(var(--background) / 0.5);
+}
+
+.governance-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  padding: 2rem;
+  border-bottom: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.drawer-header h2 {
+  color: hsl(var(--foreground));
+  margin-bottom: 0.5rem;
+}
+
+.drawer-subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: var(--transition-smooth);
+}
+
+.close-btn:hover {
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+}
+
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.policy-section {
+  margin-bottom: 1rem;
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.policy-section-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-align: left;
+}
+
+.policy-section-header:hover {
+  background: hsl(var(--accent) / 0.1);
+}
+
+.policy-section-header.expanded {
+  background: hsl(var(--accent) / 0.05);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+
+.policy-count {
+  padding: 0.25rem 0.75rem;
+  background: hsl(var(--card));
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.policy-list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: hsl(var(--card));
+}
+
+.policy-item {
+  padding: 1rem;
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+}
+
+.policy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.policy-name {
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.policy-level {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.level-critical {
+  background: hsl(var(--glow-critical) / 0.1);
+  color: hsl(var(--glow-critical));
+}
+
+.level-high {
+  background: hsl(var(--glow-warning) / 0.1);
+  color: hsl(var(--glow-warning));
+}
+
+.level-medium {
+  background: hsl(var(--glow-cyan) / 0.1);
+  color: hsl(var(--glow-cyan));
+}
+
+.level-low {
+  background: hsl(var(--secondary));
+  color: hsl(var(--muted-foreground));
+}
+
+.policy-description {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.drawer-footer {
+  padding: 1.5rem;
+  border-top: 1px solid hsl(var(--border));
+  display: flex;
+  gap: 0.75rem;
+}
+
+.drawer-footer button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: 1px solid;
+}
+
+.btn-secondary {
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--accent) / 0.1);
+  border-color: hsl(var(--accent));
+}
+
+.btn-primary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .governance-drawer {
+    width: 100vw;
+    right: -100vw;
+  }
+}

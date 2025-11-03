@@ -1,4 +1,7 @@
 import Layout from '../components/Layout/Layout';
+import HarmonyHeader from '../components/Home/HarmonyHeader';
+import StreamCards from '../components/Home/StreamCards';
+import HarmonyGraph from '../components/HarmonyGraph/HarmonyGraph';
 import BusinessPulse from '../components/Home/BusinessPulse';
 import RippleMap from '../components/Home/RippleMap';
 import InsightFeed from '../components/Home/InsightFeed';
@@ -8,11 +11,12 @@ const Home = () => {
   return (
     <Layout currentModule="home">
       <div className="home-page">
-        <header className="page-header">
-          <h1>Command Center</h1>
-          <p className="page-subtitle">Your complete business overview at a glance</p>
-        </header>
-
+        <HarmonyHeader userName="User" harmonyIndex={86} activeStreams={5} />
+        
+        <StreamCards />
+        
+        <HarmonyGraph />
+        
         <BusinessPulse />
         <RippleMap />
         <InsightFeed />

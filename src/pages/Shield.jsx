@@ -1,123 +1,122 @@
 import Layout from '../components/Layout/Layout';
-import MetricCard from '../components/Dashboard/MetricCard';
-import { Shield, AlertTriangle, Lock, Activity } from 'lucide-react';
-import './Dashboard.css';
+import StreamWorkspace from '../components/Stream/StreamWorkspace';
+
+const signals = [
+  { time: '5m ago', type: 'decrease', text: 'Risk score ↓ 18%' },
+  { time: '12m ago', type: 'neutral', text: 'Vendor X compliance failed' },
+  { time: '18m ago', type: 'increase', text: 'Fraud attempts detected: 3' },
+  { time: '25m ago', type: 'neutral', text: 'Emergency action executed' },
+  { time: '32m ago', type: 'increase', text: 'Risk exposure: $85K → $0' },
+];
+
+const proposals = [
+  {
+    title: 'Pause Vendor X Orders',
+    description: 'Vendor X failed compliance check - immediate risk mitigation required',
+    confidence: 96,
+    tags: ['Compliance', 'Risk Mitigation', 'Risk: High'],
+    simulation: {
+      'Pause orders': '15 orders',
+      'Cancel shipments': '8 shipments',
+      'Audit duration': '2-3 weeks',
+      'Risk reduction': '-18%',
+      'Alternative vendors': '3 options',
+      'Audit cost': '$15K',
+      'Confidence': '96%'
+    },
+    execution: {
+      'Executed': 'May 9, 9:15 AM',
+      'Orders PAUSED': 'All 15 orders',
+      'Exposure reduction': '$85K → $0',
+      'Prevented loss': '$50K',
+      'Task created': 'TASK-003',
+      'Status': 'CONTAINED'
+    },
+    feedback: [
+      { stream: 'Orchestrate', text: 'Alternative vendors identified: 3 options' },
+      { stream: 'Insight', text: 'Loss prevention validated: $50K' }
+    ]
+  },
+  {
+    title: 'Add Approval Workflow',
+    description: 'Mitigation for suspicious transactions',
+    confidence: 78,
+    tags: ['Security', 'Process Improvement', 'Risk: Medium'],
+    simulation: {
+      'Risk reduction': '-12%',
+      'Processing delay': '+2 hours',
+      'False positives': '< 5%',
+      'Confidence': '78%'
+    },
+    execution: {
+      'Workflow created': 'Yes',
+      'Approval chain': '2 levels',
+      'Notification': 'Email + SMS',
+      'Status': 'Ready to deploy'
+    }
+  },
+  {
+    title: 'Block Phishing Domain',
+    description: 'Finance department targeted - recommended block',
+    confidence: 91,
+    tags: ['Security', 'Phishing', 'Risk: Medium'],
+    simulation: {
+      'Domain blocked': 'Yes',
+      'Affected users': '12 employees',
+      'Training required': 'Yes',
+      'Confidence': '91%'
+    },
+    execution: {
+      'Domain': 'Blocked',
+      'Firewall updated': 'Yes',
+      'Users notified': '12',
+      'Status': 'Active'
+    }
+  }
+];
+
+const actions = [
+  {
+    title: 'Vendor X Orders Paused',
+    description: 'Emergency action: paused 15 orders, cancelled 8 shipments',
+    time: '1h ago',
+    status: 'completed',
+    result: 'Exposure reduced: $85K → $0, Loss prevented: $50K',
+    feedback: [
+      { stream: 'Orchestrate', text: 'Alternative vendors ready: 3 options' },
+      { stream: 'Insight', text: 'Financial impact validated' }
+    ]
+  },
+  {
+    title: 'Phishing Domain Blocked',
+    description: 'Blocked malicious domain targeting Finance',
+    time: '3h ago',
+    status: 'completed',
+    result: '12 users notified, training scheduled'
+  },
+  {
+    title: 'Compliance Audit Initiated',
+    description: 'Vendor X audit scheduled for 2-3 weeks',
+    time: '5h ago',
+    status: 'pending'
+  }
+];
 
 const ShieldPage = () => {
   return (
     <Layout currentModule="shield">
-      <div className="dashboard-page">
+      <div className="page-container">
         <header className="page-header">
           <h1>Lumi-Shield</h1>
-          <p className="page-subtitle">Risk management & fraud detection</p>
+          <p className="page-subtitle">Risk management & fraud detection intelligence stream</p>
         </header>
-
-        <section className="dashboard-section">
-          <h2>Current Metrics</h2>
-          <div className="metrics-grid">
-            <MetricCard
-              label="Risk Score"
-              value="42"
-              tooltip="Current combined risk exposure"
-              trend={15}
-              icon={AlertTriangle}
-            />
-            <MetricCard
-              label="Fraud Attempts"
-              value="3"
-              tooltip="Detected in last 24 hours"
-              trend={-20}
-              icon={Shield}
-            />
-            <MetricCard
-              label="Suspicious Activity"
-              value="5"
-              tooltip="Suspicious login attempts & vendor anomalies"
-              trend={10}
-              icon={Activity}
-            />
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Trends & Alerts</h2>
-          <div className="trends-container">
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge warning">Vendor Alert</span>
-                <span className="trend-impact negative">+18% Risk</span>
-              </div>
-              <h3>Vendor X failed compliance check</h3>
-              <p className="trend-description">Pause future orders → reduce risk score by 18%</p>
-              <button className="trend-action">Simulate Impact</button>
-            </div>
-
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge warning">External Threat</span>
-                <span className="trend-impact">Medium Priority</span>
-              </div>
-              <h3>Phishing email detected</h3>
-              <p className="trend-description">Affected department: Finance → Recommended block</p>
-              <button className="trend-action">Take Action</button>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Actions & Recommendations</h2>
-          <div className="actions-list">
-            <div className="action-item severity-critical">
-              <div className="action-content">
-                <h3>Investigate Vendor X</h3>
-                <p>Risk score +18%, severity: High</p>
-                <div className="action-simulation">
-                  <strong>Recommendation:</strong> Pause future orders and conduct compliance audit
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-
-            <div className="action-item severity-warning">
-              <div className="action-content">
-                <h3>Add approval workflow</h3>
-                <p>Mitigation option for suspicious transactions</p>
-                <div className="action-simulation">
-                  <strong>Simulation:</strong> Risk node impact reduction by 12%
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Review & Logs</h2>
-          <div className="history-timeline">
-            <div className="timeline-item">
-              <div className="timeline-date">7 May 2025</div>
-              <div className="timeline-content">
-                <h4>Vendor compliance check</h4>
-                <p>Vendor X flagged for review</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-date">5 May 2025</div>
-              <div className="timeline-content">
-                <h4>Phishing attempt blocked</h4>
-                <p>Security measures effective</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
+        <StreamWorkspace 
+          streamName="Shield"
+          signals={signals}
+          proposals={proposals}
+          actions={actions}
+        />
       </div>
     </Layout>
   );

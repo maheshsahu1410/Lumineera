@@ -12,6 +12,7 @@ import Resilience from "./pages/Resilience";
 import Actions from "./pages/Actions";
 import Reports from "./pages/Reports";
 import Admin from "./pages/Admin";
+import DecisionRoom from "./pages/DecisionRoom";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/actions" element={<Actions />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/decision-room" element={<DecisionRoom />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

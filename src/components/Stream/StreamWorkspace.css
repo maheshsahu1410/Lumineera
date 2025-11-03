@@ -1,0 +1,26 @@
+.stream-workspace {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  height: calc(100vh - 200px);
+  min-height: 600px;
+}
+
+.workspace-section {
+  min-height: 0;
+}
+
+@media (max-width: 1200px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .workspace-section {
+    min-height: 400px;
+  }
+}

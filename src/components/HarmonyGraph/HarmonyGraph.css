@@ -1,0 +1,147 @@
+.harmony-graph-container {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.graph-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.graph-header h2 {
+  color: hsl(var(--foreground));
+  margin-bottom: 0.5rem;
+}
+
+.graph-subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+}
+
+.harmony-graph {
+  background: hsl(var(--secondary));
+  border-radius: 8px;
+  padding: 2rem;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-svg {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.connection-line {
+  transition: var(--transition-smooth);
+}
+
+.connection-line:hover {
+  stroke-width: 3;
+}
+
+.connection-pulse {
+  animation: connectionPulse 2s ease-in-out infinite;
+}
+
+@keyframes connectionPulse {
+  0%, 100% {
+    opacity: 0.3;
+    r: 2;
+  }
+  50% {
+    opacity: 1;
+    r: 4;
+  }
+}
+
+.graph-node {
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.graph-node:hover .node-circle,
+.graph-node.selected .node-circle {
+  stroke-width: 4;
+}
+
+.node-circle {
+  transition: var(--transition-smooth);
+}
+
+.node-details {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: hsl(var(--secondary));
+  border-radius: 8px;
+  border: 1px solid hsl(var(--border));
+}
+
+.node-details h3 {
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+}
+
+.detail-connections h4 {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.detail-connections ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-connections li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: hsl(var(--card));
+  border-radius: 6px;
+}
+
+.connection-label {
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+}
+
+.connection-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.connection-status.active {
+  background: hsl(var(--glow-cyan) / 0.1);
+  color: hsl(var(--glow-cyan));
+}
+
+.connection-status.warning {
+  background: hsl(var(--glow-warning) / 0.1);
+  color: hsl(var(--glow-warning));
+}
+
+.connection-status.error {
+  background: hsl(var(--glow-critical) / 0.1);
+  color: hsl(var(--glow-critical));
+}
+
+@media (max-width: 768px) {
+  .harmony-graph {
+    padding: 1rem;
+    min-height: 400px;
+  }
+}

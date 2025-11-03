@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Home, Users, Package, Shield, TrendingUp, Activity, ListTodo, FileText, Settings } from 'lucide-react';
+import { Home, Users, Package, Shield, TrendingUp, Activity, ListTodo, FileText, Settings, GitMerge } from 'lucide-react';
 import './LeftNav.css';
 
 const navItems = [
   { id: 'home', label: 'Home', icon: Home, path: '/' },
+  { id: 'decision-room', label: 'Decision Room', icon: GitMerge, path: '/decision-room' },
   { id: 'engage', label: 'Lumi-Engage', icon: Users, path: '/engage' },
   { id: 'orchestrate', label: 'Lumi-Orchestrate', icon: Package, path: '/orchestrate' },
   { id: 'shield', label: 'Lumi-Shield', icon: Shield, path: '/shield' },

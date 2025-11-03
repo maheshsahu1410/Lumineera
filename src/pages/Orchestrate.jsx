@@ -1,123 +1,127 @@
 import Layout from '../components/Layout/Layout';
-import MetricCard from '../components/Dashboard/MetricCard';
-import { Package, TrendingUp, Users, Clock } from 'lucide-react';
-import './Dashboard.css';
+import StreamWorkspace from '../components/Stream/StreamWorkspace';
+
+const signals = [
+  { time: '3m ago', type: 'decrease', text: 'Stock-outs ↓ 2%' },
+  { time: '8m ago', type: 'increase', text: 'Fulfillment rate ↑ 95%' },
+  { time: '15m ago', type: 'neutral', text: 'Vendor X delivery scheduled' },
+  { time: '20m ago', type: 'increase', text: 'On-time delivery ↑ 95%' },
+  { time: '28m ago', type: 'neutral', text: 'Warehouse space allocated' },
+];
+
+const proposals = [
+  {
+    title: 'Reorder Vendor X Stock',
+    description: 'Inventory low: restock to maintain 95% fulfillment rate',
+    confidence: 95,
+    tags: ['Vendor Management', 'Inventory', 'Risk: Low'],
+    simulation: {
+      'Order': '500 units',
+      'Cost': '$12,500 estimate',
+      'Arrival': 'May 12',
+      'Stock level': '520 units',
+      'On-time delivery': '↑95%',
+      'Revenue protection': '$45K/week',
+      'Confidence': '95%'
+    },
+    execution: {
+      'PO created': 'PO-2025-0512',
+      'Order placed': 'May 9, 2:30 PM',
+      'Coverage': '104 days',
+      'Stockout probability': '2%',
+      'Payment processed': '$12,500',
+      'Vendor confirmed': 'Yes',
+      'Tracking': 'Daily updates',
+      'Warehouse': 'Space allocated',
+      'Teams notified': '3 departments',
+      'Status': 'Order Confirmed'
+    },
+    feedback: [
+      { stream: 'Engage', text: 'Campaign delivery secured' },
+      { stream: 'Insight', text: 'Revenue protection: $45K/week' }
+    ]
+  },
+  {
+    title: 'Switch to Vendor Y',
+    description: 'Predicted result: Delivery rate ↑ 8%, Cost ↓ 2%',
+    confidence: 82,
+    tags: ['Vendor Switch', 'Cost Optimization', 'Risk: Medium'],
+    simulation: {
+      'Delivery improvement': '↑ 8%',
+      'Cost reduction': '↓ 2%',
+      'Delivery time': '-20%',
+      'Quality score': '92%',
+      'Confidence': '82%'
+    },
+    execution: {
+      'New vendor': 'Vendor Y',
+      'Contract signed': 'Pending',
+      'Transition period': '2 weeks',
+      'Status': 'Ready to implement'
+    }
+  },
+  {
+    title: 'Optimize Logistics Route',
+    description: 'Fuel prices ↑ 5%: adjust delivery routes to minimize cost impact',
+    confidence: 78,
+    tags: ['Logistics', 'Cost Savings', 'Risk: Low'],
+    simulation: {
+      'Fuel cost reduction': '↓ 3%',
+      'Delivery time': 'No change',
+      'Route optimization': '3 routes updated',
+      'Confidence': '78%'
+    },
+    execution: {
+      'Routes updated': '3',
+      'Drivers notified': 'Yes',
+      'Cost savings': '$2,100/month',
+      'Status': 'Implementation ready'
+    }
+  }
+];
+
+const actions = [
+  {
+    title: 'Vendor X Reorder',
+    description: 'Ordered 500 units from Vendor X',
+    time: '2h ago',
+    status: 'completed',
+    result: 'PO-2025-0512 confirmed, delivery May 12',
+    feedback: [
+      { stream: 'Engage', text: 'Campaign delivery capacity secured' },
+      { stream: 'Insight', text: 'Revenue protection: $45K/week validated' }
+    ]
+  },
+  {
+    title: 'Warehouse Space Allocation',
+    description: 'Allocated space for incoming stock',
+    time: '4h ago',
+    status: 'completed',
+    result: 'Space allocated, teams notified'
+  },
+  {
+    title: 'Logistics Route Update',
+    description: 'Updated 3 delivery routes for fuel efficiency',
+    time: '1d ago',
+    status: 'pending'
+  }
+];
 
 const Orchestrate = () => {
   return (
     <Layout currentModule="orchestrate">
-      <div className="dashboard-page">
+      <div className="page-container">
         <header className="page-header">
           <h1>Lumi-Orchestrate</h1>
-          <p className="page-subtitle">Inventory, logistics & vendor management</p>
+          <p className="page-subtitle">Inventory, logistics & vendor management intelligence stream</p>
         </header>
-
-        <section className="dashboard-section">
-          <h2>Current Metrics</h2>
-          <div className="metrics-grid">
-            <MetricCard
-              label="Delivery Rate"
-              value="92%"
-              tooltip="On-time delivery last week"
-              trend={3}
-              icon={Clock}
-            />
-            <MetricCard
-              label="Stock Levels"
-              value="450 units"
-              tooltip="Current inventory vs target 500 units"
-              trend={-10}
-              icon={Package}
-            />
-            <MetricCard
-              label="Vendor Performance"
-              value="87%"
-              tooltip="Vendor compliance & reliability index"
-              trend={5}
-              icon={Users}
-            />
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Trends & News</h2>
-          <div className="trends-container">
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge warning">Supplier Alert</span>
-                <span className="trend-impact negative">-3% Delivery</span>
-              </div>
-              <h3>Vendor X → 3-day delay due to strike</h3>
-              <p className="trend-description">Adjust reorder → impact on delivery times</p>
-              <button className="trend-action">Simulate Impact</button>
-            </div>
-
-            <div className="trend-card">
-              <div className="trend-header">
-                <span className="trend-badge warning">Logistics Cost</span>
-                <span className="trend-impact negative">+5%</span>
-              </div>
-              <h3>Fuel price ↑ 5%</h3>
-              <p className="trend-description">Simulate cost increase on budget forecast</p>
-              <button className="trend-action">Simulate Impact</button>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Actions & Recommendations</h2>
-          <div className="actions-list">
-            <div className="action-item severity-warning">
-              <div className="action-content">
-                <h3>Switch to Vendor Y</h3>
-                <p>Predicted result: Delivery rate ↑ 8%, Cost ↓ 2%</p>
-                <div className="action-simulation">
-                  <strong>Simulation:</strong> Delivery time -20%
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-
-            <div className="action-item severity-critical">
-              <div className="action-content">
-                <h3>Reorder Vendor X stock now</h3>
-                <p>Inventory low: 20 units remaining</p>
-                <div className="action-simulation">
-                  <strong>Simulation:</strong> Stock replenished → Delivery on time ↑ 95%
-                </div>
-              </div>
-              <div className="action-buttons">
-                <button className="action-btn simulate">Simulate</button>
-                <button className="action-btn implement">Implement</button>
-                <button className="action-btn ask">Ask Lumineera</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>History & Review</h2>
-          <div className="history-timeline">
-            <div className="timeline-item">
-              <div className="timeline-date">6 May 2025</div>
-              <div className="timeline-content">
-                <h4>Vendor switch completed</h4>
-                <p>Delivery rate improved by 8%</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-date">3 May 2025</div>
-              <div className="timeline-content">
-                <h4>Stock reorder placed</h4>
-                <p>Inventory levels normalized</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
+        <StreamWorkspace 
+          streamName="Orchestrate"
+          signals={signals}
+          proposals={proposals}
+          actions={actions}
+        />
       </div>
     </Layout>
   );
